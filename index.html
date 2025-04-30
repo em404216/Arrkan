@@ -323,39 +323,43 @@
         <p class="mb-4">
           ما في شيء يطمن زي تجربة الآخرين! نسمع كثير عن تجارب عملاء الشركة:
         </p>
-
-        <div class="review-slider">
-          <button class="arrow left">&#10094;</button>
-          <div class="slide-track-wrapper">
-            <div class="slide-track" id="slideTrack">
-              <!-- Review slides go here -->
-              <div class="review-slide">
-                "خدمة ممتازة وسريعة!"<br /><strong>أحمد السبيعي</strong>
-              </div>
-              <div class="review-slide">
-                "أفضل الأسعار وجودة رائعة."<br /><strong>منى العتيبي</strong>
-              </div>
-              <div class="review-slide">
-                "دعم فني سريع جدًا."<br /><strong>سعود الزهراني</strong>
-              </div>
-              <div class="review-slide">
-                "تركيب احترافي جدًا."<br /><strong>خالد الحربي</strong>
-              </div>
-              <div class="review-slide">
-                "تركيب الكاميرات كان سريع وجودة التصوير ممتازة! ما عاد عندي قلق
-                على بيتي وأنا برة."<br /><strong>أم محمد</strong>
-              </div>
-              <div class="review-slide">
-                "الدعم الفني رهيب! واجهت مشكلة بسيطة وانحلت في أقل من ساعة."<br /><strong
-                  >أبو خالد</strong
-                >
-              </div>
+    
+        <!-- Swiper container -->
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <!-- Each review becomes a swiper-slide -->
+            <div class="swiper-slide">
+              "خدمة ممتازة وسريعة!"<br /><strong>أحمد السبيعي</strong>
+            </div>
+            <div class="swiper-slide">
+              "أفضل الأسعار وجودة رائعة."<br /><strong>منى العتيبي</strong>
+            </div>
+            <div class="swiper-slide">
+              "دعم فني سريع جدًا."<br /><strong>سعود الزهراني</strong>
+            </div>
+            <div class="swiper-slide">
+              "تركيب احترافي جدًا."<br /><strong>خالد الحربي</strong>
+            </div>
+            <div class="swiper-slide">
+              "تركيب الكاميرات كان سريع وجودة التصوير ممتازة! ما عاد عندي قلق
+              على بيتي وأنا برة."<br /><strong>أم محمد</strong>
+            </div>
+            <div class="swiper-slide">
+              "الدعم الفني رهيب! واجهت مشكلة بسيطة وانحلت في أقل من ساعة."<br /><strong>أبو خالد</strong>
+            </div>
+            <div class="swiper-slide">
+              "الدعم الفني جيد "<br /><strong> خالد</strong>
             </div>
           </div>
-          <button class="arrow right">&#10095;</button>
+    
+          <!-- Optional Swiper navigation -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
         </div>
       </div>
     </section>
+    
 
     <section id="get-in-touch">
       <h2 class="get-in-touch-heading">
@@ -537,94 +541,41 @@
         var typed = new Typed("#typed-text", options);
 
         // Slider functionality
-        const slideTrack = document.getElementById("slideTrack");
-        const slideWrapper = document.querySelector(".slide-track-wrapper");
-        const leftArrow = document.querySelector(".arrow.left");
-        const rightArrow = document.querySelector(".arrow.right");
+// Initialize Swiper
+var swiper = new Swiper('.mySwiper', {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  loop: true,
+  loopedSlides: 7, // add this line
+  centeredSlides: true,
+  slideToClickedSlide: true,
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  breakpoints: {
+    1024: {
+      slidesPerView: 3,
+    },
+    768: {
+      slidesPerView: 2,
+    },
+    480: {
+      slidesPerView: 1,
+    }
+  }
+});
 
-        const slideWidth = 300 + 32; // 300px + 16px margin (left + right)
-        const visibleCards = 3; // Set to 3 visible cards
-        let currentIndex = 1; // Start from the second card (because of the first clone)
-        let isTransitioning = false;
 
-        // Clone the first and last slides to enable infinite scrolling
-        const originalSlides = [...slideTrack.children];
-        const firstClone = originalSlides[0].cloneNode(true);
-        const lastClone =
-          originalSlides[originalSlides.length - 1].cloneNode(true);
 
-        slideTrack.appendChild(firstClone); // Add clone of the first slide
-        slideTrack.insertBefore(lastClone, slideTrack.firstElementChild); // Add clone of the last slide
-
-        // Update transform to reflect the correct slide position
-        function updateTransform(transition = true) {
-          const wrapperWidth = slideWrapper.offsetWidth;
-          const offset = (wrapperWidth - slideWidth * visibleCards) / 2; // Centering adjustment
-          const translateX = currentIndex * slideWidth - offset;
-
-          slideTrack.style.transition = transition
-            ? "transform 0.5s ease"
-            : "none";
-          slideTrack.style.transform = `translateX(-${translateX}px)`;
-
-          // Update active class for center card
-          Array.from(slideTrack.children).forEach(
-            (slide, i) =>
-              slide.classList.toggle("active", i === currentIndex + 1) // Center card logic
-          );
-        }
-
-        // Next slide function
-        function nextSlide() {
-          if (isTransitioning) return; // Prevent transitioning if already in progress
-          isTransitioning = true;
-          currentIndex++;
-          updateTransform();
-
-          slideTrack.addEventListener(
-            "transitionend",
-            () => {
-              // If we reach the last clone, reset to the second card (after the first clone)
-              if (currentIndex === slideTrack.children.length - 1) {
-                currentIndex = 1; // Reset back to the first item after the clone
-                updateTransform(false); // Without transition to jump back immediately
-              }
-              isTransitioning = false;
-            },
-            { once: true }
-          );
-        }
-
-        // Previous slide function
-        function prevSlide() {
-          if (isTransitioning) return; // Prevent transitioning if already in progress
-          isTransitioning = true;
-          currentIndex--;
-          updateTransform();
-
-          slideTrack.addEventListener(
-            "transitionend",
-            () => {
-              // If we reach the first clone, reset to the last card (before the last clone)
-              if (currentIndex === 0) {
-                currentIndex = slideTrack.children.length - 2; // Go to the second last card
-                updateTransform(false); // Without transition to jump back immediately
-              }
-              isTransitioning = false;
-            },
-            { once: true }
-          );
-        }
-
-        // Event listeners for arrows
-        rightArrow.addEventListener("click", nextSlide);
-        leftArrow.addEventListener("click", prevSlide);
-
-        // Initial call to set the correct transform position
-        updateTransform(false);
+       
       });
     </script>
-
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

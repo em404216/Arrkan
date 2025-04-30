@@ -628,103 +628,229 @@ a {
 }
 
 /* Reviews Section */
-/* === Slider Container === */
-.review-slider {
+/* === Swiper Container === */
+.swiper.mySwiper {
   position: relative;
   background: linear-gradient(145deg, #f5f5f5, #ffffff);
   padding: 2rem;
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  max-width: 960px; /* Adjust based on your container size */
+  max-width: 100%;
   margin: auto;
-}
-
-/* === Track Wrapper (for clipping and centering) === */
-.slide-track-wrapper {
-  overflow: hidden;
+  /* direction: rtl; */
   width: 100%;
-  display: flex;
-  justify-content: center; /* Center the track */
+  /* height: 100vh;  */
 }
 
-/* === Track Holding Slides === */
-.slide-track {
+/* === Swiper Wrapper === */
+.swiper-wrapper {
   display: flex;
-  gap: 1rem; /* Adjust gap between cards */
-  will-change: transform;
-  transition: transform 0.5s ease;
+  gap: 1rem;
+  align-items: center; /* Vertically align the slides */
+  justify-content: center; /* Center align the slides */
+  height: 100%; /* Ensure swiper wrapper takes full height */
 }
 
-/* === Individual Slide === */
-.review-slide {
-  width: 300px; /* Fixed width for each card */
-  flex-shrink: 0;
-  margin: 0 1rem; /* Space between cards */
-  background: #ffffff;
-  padding: 2rem;
+/* === Swiper Slide (Review Card) === */
+.swiper-slide {
+  background-color: #ffffff;
+  padding: 1.5rem;
   border-radius: 20px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   font-size: 1rem;
   line-height: 1.6;
   color: #333;
-  position: relative;
   border-top: 4px solid #1b6765;
   font-family: "Cairo", sans-serif;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
+  flex-shrink: 0;
+  transform: scale(1);
+  width: 90%; /* Slight margin from the sides */
+  max-width: 100%; /* Prevent overflow */
+  height: auto; /* Allow dynamic height */
 }
 
-/* === Hover Effect === */
-.review-slide:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* === Centered Slide Animation === */
-.review-slide.active {
-  transform: scale(1.1); /* Scale up the center card */
+/* === Active Slide (Middle Card) === */
+.swiper-slide-active {
+  transform: scale(1.1);
   z-index: 2;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
 
-/* === Slide Name Styling === */
-.review-slide strong {
-  display: block;
-  margin-top: 1rem;
-  color: #1b6765;
-  font-size: 1.1rem;
+/* === Inactive Slides === */
+.swiper-slide-next, .swiper-slide-prev {
+  transform: scale(0.95);
+  opacity: 0.7;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* === Navigation Arrows === */
-.arrow {
-  position: absolute;
+/* === Swiper Navigation Buttons === */
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: #1b6765;
+  color: #fff !important;
+  border-radius: 50%;
+  width: 48px !important;
+  height: 48px !important;
+  font-size: 1.5rem !important;
   top: 50%;
   transform: translateY(-50%);
-  background: #1b6765;
-  color: #fff;
-  border: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover effect on navigation buttons */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: #14514f;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Swiper pagination bullets */
+.swiper-pagination-bullet {
+  background-color: #ccc;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.5rem;
-  cursor: pointer;
-  z-index: 10;
-  transition: background 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
-.arrow:hover {
-  background: #14514f;
+/* Active bullet */
+.swiper-pagination-bullet-active {
+  background-color: #1b6765;
+  width: 16px;
+  height: 16px;
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
-.arrow.left {
-  left: 10px;
+/* === Responsive Styles === */
+
+/* For Tablets */
+@media (max-width: 1024px) {
+  .swiper-slide {
+    width: 280px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 14px;
+    height: 14px;
+  }
 }
 
-.arrow.right {
-  right: 10px;
+/* For Mobile Landscape */
+@media (max-width: 768px) {
+  .swiper-slide {
+    width: 250px;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+  }
+
+  .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 12px;
+    height: 12px;
+  }
 }
 
+/* For Mobile Portrait */
+@media (max-width: 480px) {
+  .swiper.mySwiper {
+    padding: 0; /* Remove padding to maximize space */
+    /* height: 100vh;  */
+  }
+
+  .swiper-wrapper {
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Full height for swiper */
+  }
+
+  .swiper-slide {
+    width: 75vw !important;
+ height: auto !important;
+    padding: 2rem !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+
+  .swiper-pagination-bullet {
+    width: 6px !important;
+    height: 6px !important;
+  }
+
+  .swiper-pagination-bullet-active {
+    width: 10px !important;
+    height: 10px !important;
+  }
+}
+
+/* === Default (Inactive) Pagination Bullets === */
+.swiper-pagination-bullet {
+  background-color: #ccc;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+/* === Active Pagination Bullet === */
+.swiper-pagination-bullet-active {
+  background-color: #1b6765 !important;
+  width: 16px;
+  height: 16px;
+  transform: scale(1.2);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+/* === Optional: Hover Effect on Pagination Bullets === */
+.swiper-pagination-bullet:hover {
+  background-color: #3498db;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-family: swiper-icons;
+  font-size: 1.5rem !important;
+  text-transform: none !important;
+  letter-spacing: 0;
+  font-variant: initial;
+  line-height: 1;
+}
 
 /* hashtag */
 #get-in-touch {
@@ -942,3 +1068,6 @@ a {
   width: 55px;
   height: auto;
 }
+
+
+
