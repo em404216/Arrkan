@@ -1,4 +1,7 @@
 /* Body Styles */
+*{
+  scroll-behavior: smooth;
+}
 body {
   font-family: "Cairo", sans-serif;
   margin: 0;
@@ -1071,3 +1074,61 @@ a {
 
 
 
+.scroll-top-btn {
+  position: fixed;
+  bottom: 20px;     /* distance from bottom */
+  right: 20px;      /* distance from right */
+  z-index: 1000;    /* make sure it's on top */
+  padding: 10px 15px;
+  font-size: 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none;    /* hide initially if you want to show it only on scroll */
+}
+
+.scroll-top-btn:hover {
+  background-color: #555;
+}
+@media (max-width: 767px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 16px !important; /* adjust if using icons inside */
+    background-size : contain !important; /* if using custom background image */
+  }
+}
+@media (max-width: 767px) {
+  .swiper-button-next::after,
+  .swiper-button-prev::after {
+    font-size: 16px !important; /* default is 44px */
+  }
+}
+.swiper-button-next,
+.swiper-button-prev {
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+}
+
+
+/* Hide all bullets */
+/* .swiper-pagination-bullet {
+  display: none !important;
+} */
+
+/* Show only the active bullet */
+/* .swiper-pagination-bullet-active {
+  display: inline-block !important;
+}
+.swiper-pagination-bullet {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.swiper-pagination-bullet-active {
+  display: inline-block;
+  opacity: 1;
+} */

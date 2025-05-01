@@ -1,0 +1,147 @@
+body {
+    font-family: 'Tahoma', sans-serif;
+    background-color: #F7F9FC;
+    color: #333;
+    line-height: 1.8;
+    direction: rtl;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+  }
+  
+  header {
+    background-color: #3f9690;
+    color: white;
+    padding: 20px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  header h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 26px;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+  }
+  
+  nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  nav a:hover {
+    color: #F7F9FC;
+    text-decoration: underline;
+  }
+  
+  main {
+    padding: 40px 20px;
+  }
+  
+  .blog-post h2 {
+    color: #3f9690;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .blog-post h3 {
+    color: #3f9690;
+    margin-top: 30px;
+    font-size: 20px;
+  }
+  
+  .blog-post p {
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+  }
+  
+  strong {
+    color: #3f9690;
+  }
+  
+  footer {
+    background-color: #3f9690;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    margin-top: 40px;
+  }
+  
+  /* Responsive Styles */
+  
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 22px;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+  
+    .container {
+      width: 95%;
+    }
+  
+    .blog-post h2 {
+      font-size: 22px;
+    }
+  
+    .blog-post h3 {
+      font-size: 18px;
+    }
+  
+    .blog-post p {
+      font-size: 16px;
+      padding: 12px 18px;
+    }
+  
+    footer {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header h1 {
+      font-size: 20px;
+    }
+  
+    .blog-post h2 {
+      font-size: 20px;
+    }
+  
+    .blog-post h3 {
+      font-size: 16px;
+    }
+  
+    .blog-post p {
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+  
+    footer {
+      font-size: 12px;
+      padding: 10px;
+    }
+  }
+  
