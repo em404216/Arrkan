@@ -27,7 +27,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./main.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+   
     <link
       href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800&display=swap"
       rel="stylesheet"
@@ -106,7 +106,7 @@
       <!-- Background Image -->
       <div class="hero-bg-container">
         <img
-          src="./img/vision-camera.jpeg"
+          src="./img/vision-camera.png"
           alt="Hero Right Side"
           class="hero-bg-img"
           loading="lazy"
@@ -135,7 +135,10 @@
               أفضل حلول المراقبة المنزلية بتقنيات حديثة وأسعار منافسه
             </p>
             <p class="lead animate-text">راقب بيتك اينما كنت</p>
-            <button class="btn animate-btn">تعرف على المزيد</button>
+            <button class="btn animate-btn" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' });">
+              تعرف على المزيد
+            </button>
+            
           </div>
         </div>
       </div>
@@ -318,47 +321,25 @@
     </section>
 
     <!-- Reviews Section -->
-    <section id="reviews" class="reviews section" data-aos="fade-up">
-      <div class="container text-center">
+    <section  id="reviews" class="reviews section " data-aos="fade-up">
+      <div class=" text-center">
         <h2 class="section-title">آراء العملاء</h2>
         <p class="mb-4">
           ما في شيء يطمن زي تجربة الآخرين! نسمع كثير عن تجارب عملاء الشركة:
         </p>
-    
-        <!-- Swiper container -->
-        <div class="swiper mySwiper">
-          <div class="swiper-wrapper">
-            <!-- Each review becomes a swiper-slide -->
-            <div class="swiper-slide">
-              "خدمة ممتازة وسريعة!"<br /><strong>أحمد السبيعي</strong>
-            </div>
-            <div class="swiper-slide">
-              "أفضل الأسعار وجودة رائعة."<br /><strong>منى العتيبي</strong>
-            </div>
-            <div class="swiper-slide">
-              "دعم فني سريع جدًا."<br /><strong>سعود الزهراني</strong>
-            </div>
-            <div class="swiper-slide">
-              "تركيب احترافي جدًا."<br /><strong>خالد الحربي</strong>
-            </div>
-            <div class="swiper-slide">
-              "تركيب الكاميرات كان سريع وجودة التصوير ممتازة! ما عاد عندي قلق
-              على بيتي وأنا برة."<br /><strong>أم محمد</strong>
-            </div>
-            <div class="swiper-slide">
-              "الدعم الفني رهيب! واجهت مشكلة بسيطة وانحلت في أقل من ساعة."<br /><strong>أبو خالد</strong>
-            </div>
-            <div class="swiper-slide">
-              "الدعم الفني جيد "<br /><strong> خالد</strong>
-            </div>
-          </div>
-    
-          <!-- Optional Swiper navigation -->
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
+        <swiper-container class="mySwiper " autoplay loop="true" pagination="false" effect="coverflow" grab-cursor="true" centered-slides="true"
+        slides-per-view="3"  coverflow-effect-stretch="0" coverflow-effect-depth="50" space-between="5"
+        coverflow-effect-modifier="0" coverflow-effect-slide-shadows="true">
+        <swiper-slide class="swiper-slide">"خدمة ممتازة وسريعة!"<br /><strong>أحمد السبيعي</strong></swiper-slide>
+        <swiper-slide class="swiper-slide">"أفضل الأسعار وجودة رائعة."<br /><strong>منى العتيبي</strong></swiper-slide>
+        <swiper-slide class="swiper-slide">"دعم فني سريع جدًا."<br /><strong>سعود الزهراني</strong></swiper-slide>
+        <swiper-slide class="swiper-slide">"تركيب احترافي جدًا."<br /><strong>خالد الحربي</strong></swiper-slide>
+        <swiper-slide class="swiper-slide"> "تركيب الكاميرات كان سريع وجودة التصوير ممتازة! ما عاد عندي قلق
+          على بيتي وأنا برة."<br /><strong>أم محمد</strong></swiper-slide>
+        <swiper-slide class="swiper-slide">"الدعم الفني رهيب! واجهت مشكلة بسيطة وانحلت في أقل من ساعة."<br /><strong>أبو خالد</strong></swiper-slide>
+        <swiper-slide class="swiper-slide"> "الدعم الفني جيد "<br /><strong> خالد</strong></swiper-slide>
+      </swiper-container>
         </div>
-      </div>
     </section>
     
 
@@ -504,16 +485,17 @@
 
     <button id="scrollTopBtn" class="scroll-top-btn">↑</button>
 
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Initialize AOS (Animate on Scroll)
+        // Initialize AOS
         AOS.init({
-          duration: 1000, // Animation duration
-          once: true, // Animation appears only once
+          duration: 1000,
+          once: true,
         });
-
-        // Scroll to top button functionality
+    
+        // Scroll to top
         const scrollTopBtn = document.getElementById("scrollTopBtn");
         window.onscroll = function () {
           if (
@@ -528,8 +510,8 @@
         scrollTopBtn.onclick = function () {
           window.scrollTo({ top: 0, behavior: "smooth" });
         };
-
-        // Typed.js text effect
+    
+        // Typed.js
         var options = {
           strings: ["صيانة", "برمجة", "تركيب"],
           typeSpeed: 100,
@@ -541,42 +523,22 @@
         };
         var typed = new Typed("#typed-text", options);
 
-        // Slider functionality
-// Initialize Swiper
-var swiper = new Swiper('.mySwiper', {
-  slidesPerView: 3,
-  spaceBetween: 30,
-  loop: true,
-  loopedSlides: 7, // add this line
-  centeredSlides: true,
-  slideToClickedSlide: true,
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  breakpoints: {
-    1024: {
-      slidesPerView: 3,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-    480: {
-      slidesPerView: 1,
-    }
-  }
-});
-
-
-
-       
+        // ✅ Hamburger toggle
+        window.toggleNavbar = function () {
+          const nav = document.querySelector(".nav");
+          nav.classList.toggle("show");
+        };
+    
+        // ✅ Auto-close nav when a link is clicked (optional)
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            const nav = document.querySelector(".nav");
+            nav.classList.remove("show");
+          });
+        });
       });
     </script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
